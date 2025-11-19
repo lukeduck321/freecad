@@ -1,2 +1,4 @@
 php
 start with php -S localhost:8000 main.html
+
+freecad -c main.py
