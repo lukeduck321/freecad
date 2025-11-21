@@ -2,7 +2,7 @@ import FreeCAD
 import Mesh
 def cap(var):
 
-    
+    print("test",var)    
 
     
     doc = FreeCAD.open("cube.FCStd")
@@ -17,7 +17,7 @@ def cap(var):
         
         # Try to set the width property directly
         if hasattr(var_set, 'width'):
-            var_set.width = var
+            var_set.width = float(var)
             doc.recompute()
             print("Width set via direct property access")
         else:

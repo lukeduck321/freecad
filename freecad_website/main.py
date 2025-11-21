@@ -1,35 +1,23 @@
-import sys
+import os
 import FreeCAD
 import Mesh
-from cap import cap
 
-
-"""def run():
-    doc = FreeCAD.open("cube.FCStd")
+def main():
+    width_value = os.getenv('WIDTH_VALUE', '42')  # Default to 42 if not set
     
-    # Method 2: Direct property access
+    print(f"Setting width to: {width_value}")
+    
+    doc = FreeCAD.open("cube.FCStd")
     var_set = doc.getObject("VarSet")
-    if var_set:
-        # List all properties to find the correct one
-        print("Properties in VarSet:")
-        for prop in var_set.PropertiesList:
-            print(f"  - {prop}")
-        
-        # Try to set the width property directly
-        if hasattr(var_set, 'width'):
-            var_set.width = 42.0
-            doc.recompute()
-            print("Width set via direct property access")
-        else:
-            print("'width' property not found in VarSet")
+    
+    if var_set and hasattr(var_set, 'width'):
+        var_set.width = float(width_value)
+        doc.recompute()
+        print(f"Width set to {width_value}")
     
     body = doc.getObject("Body")
     if body:
         Mesh.export([body], "output_model.stl")
-        print("STL exported!")"""
+        print("STL exported!")
 
-ob = sys.argv[1]
-un = sys.argv[2]
-
-if ob == 'cap': 
-    cap(un)
+main()
